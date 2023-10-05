@@ -1,6 +1,0 @@
-{
-  "type": "module",
-  "dependencies": {
-    "mobx-state-tree": "^5.2.0"
-  }
-}
