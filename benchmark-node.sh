@@ -5,7 +5,7 @@ run_id=$(date +%s)
 
 # We can either run all of the scenarios in a directory or specify specific scenarios to run.
 # So all_scenarios_in_directory is a variable that holds all of the scenarios in a directory.
-all_scenarios_in_directory=($(find ./build/ -name "*.js"))
+all_scenarios_in_directory=($(find ./build -name "*.js"))
 
 specific_scenarios=(
     "./build/create-1k-model-instances.bundle.js"
