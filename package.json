@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mobx-state-tree": "^5.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build": "rm -rf ./build/* && webpack --config webpack.config.js"
+  }
+}
