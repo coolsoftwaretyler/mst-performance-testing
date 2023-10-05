@@ -1,5 +1,6 @@
 import { types } from "mobx-state-tree";
 
+(() => {})();
 /**
  * Let's define a model that has one of each MST primitive: https://mobx-state-tree.js.org/overview/types#primitive-types
  */
