@@ -13,7 +13,7 @@ const webpackConfigurations = scenarioFiles.map((file) => ({
   entry: path.join(scenariosDir, file),
   output: {
     filename: file.replace(".js", ".bundle.js"),
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "build/node"),
   },
   target: "node",
   mode: "production",
