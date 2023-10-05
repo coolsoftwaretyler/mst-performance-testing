@@ -39,14 +39,14 @@ npm install
 cd ../..
 
 # Append the csv headers to ./results/run_id.csv
-echo "Appending csv headers to ./results/$run_id.csv"
-echo "scenario,time_ms,memory_mb" >> "./results/$run_id.csv"
+echo "Appending csv headers to ./results/node-$run_id.csv"
+echo "scenario,time_ms,memory_mb" >> "./results/node-$run_id.csv"
 
 # Then run each of the scenarios locally from the ./src/node/scenarios directory,
 # For each one - listen to stdout and append it to ./results/run_id.csv. There should only be one line of output per scenario.
 for file in "${scenarios_to_run[@]}"; do
     echo "Running scenario: $file"
-    node ./src/node/scenarios/"$(basename "$file")" >> "./results/$run_id.csv" 
+    node ./src/node/scenarios/"$(basename "$file")" >> "./results/node-$run_id.csv" 
 done
 
 # Now clean up the files and remove them
