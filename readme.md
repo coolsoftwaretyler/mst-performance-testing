@@ -29,6 +29,8 @@ You could run:
 ```sh
 npm run test:node
 npm run test:hermes
+npm run test:web
+npm run test
 ```
 
 And see the beginnings of some results from the existing scenarios.

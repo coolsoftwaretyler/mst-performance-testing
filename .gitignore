@@ -4,5 +4,4 @@ build/node/*.txt
 build/web/*.js
 build/web/*.txt
 build/hermes/*.js
-results/hermes.txt
-results/node.txt
+results/*.txt
