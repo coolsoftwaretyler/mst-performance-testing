@@ -7,8 +7,8 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build:node": "rm -rf ./build/node/* && webpack --config webpack.config.js",
-    "test:node": "rm -f ./results/node.txt && npm run build:node && ./benchmark-node.sh &> ./results/node.txt",
-    "test:hermes": "rm -f ./results/hermes.txt && npm run build:node && ./benchmark-hermes.sh &> ./results/hermes.txt"
+    "build": "rm -rf ./build/node/* && webpack --config webpack.config.js",
+    "test:node": "rm -f ./results/node.txt && npm run build && ./benchmark-node.sh &> ./results/node.txt",
+    "test:hermes": "rm -f ./results/hermes.txt && npm run build && ./benchmark-hermes.sh &> ./results/hermes.txt"
   }
 }
