@@ -27,8 +27,8 @@ Assuming you can:
 You could run:
 
 ```sh
-yarn test:node
-yarn test:hermes
+npm run test:node
+npm run test:hermes
 ```
 
 And see the beginnings of some results from the existing scenarios.
