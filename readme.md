@@ -2,35 +2,63 @@
 
 This repo is intended to test the performance of [MobX-State-Tree](https://github.com/mobxjs/mobx-state-tree). More to come!
 
-Right now it's running only locally on my machine, but once I sort out:
+## Dependencies
 
-1. [x] node
-2. [x] hermes
-3. [ ] web
+In order to run the tests here, you'll need:
 
-I will work on putting together:
+1. [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) in order to run node scripts and download dependencies with `npm`.
+2. `node-hermes`, which is [and unsupported tool provided by Hermes](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes). [See more about building your own version](#building-node-hermes)
+3. The [gnu-time command](https://www.gnu.org/software/time/), available in your path as `gtime` (this helps maintain compatibility across Mac OS and Linux)
+4. [git](https://git-scm.com/) for source code management.
+5. [bash](https://www.gnu.org/software/bash/) or any shell that can evaluate `.sh` files (used to run Hermes and Node benchmarks).
 
-1. Some list of setup dependencies
-2. Containerization infrastructure
+### Building node-hermes
 
-That way folks will be able to run it anywhere (and hopefully in the cloud).
+[Hermes](https://hermesengine.dev/) is a JavaScript engine optimized for React Native. MobX-State-Tree cares about Hermes-based performance because: MobX-State-Tree has a long history of being popular in the React Native ecosystem, which now uses Hermes as its default JavaScript engine. Hermes [did a lot of work to support proxies](https://reactnative.dev/blog/2021/03/12/version-0.64#hermes-with-proxy-support), which MobX-State-Tree needs in order to use MobX 5+, along with [many other popular libraries](https://github.com/facebook/hermes/issues/33). We appreciate their work, and want to make sure we're always considering how our two projects interact.
 
-Once we have these things working for all three target environments and running consistently, we will add mechanisms to test against different mobx-state-tree versions, and instructions on how to write scenarios to benchmark.
+However, for the purpose of this testing library, we didn't want to require an entire React Native set up to get benchmarks. We wanted to make our testing scenarios "Just Work" in a variety of environments.
 
-Current benchmark results come out as the output from [gnu-time](https://formulae.brew.sh/formula/gnu-time), but will eventually get formatted to something more useful.
+Since we run scenarios in node with `node /path/to/scenario.js`, it would be awesome if there was some way we could run a given scenario with `hermes`.
 
-Assuming you can:
+Of course, you can [build Hermes from source](https://hermesengine.dev/docs/building-and-running#building-on-linux-and-macos), but the engine doesn't implement many features people are used to writing in Node.js, browsers, or React Native itself. Fortunately, Hermes has an (unsupported) tool, called [`node-hermes`](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes), which will in fact run a JavaScript bundle like `node-hermes /path/to/bundle.js`
 
-1. Build [node-hermes](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes) locally and wire it up in `benchmark-hermes.sh`
-2. Have `gtime` running on Mac (or swap out `time` in a Linux environment)
-
-You could run:
+If you want to get a `node-hermes` binary on your machine, [follow the building instructions](https://hermesengine.dev/docs/building-and-running#building-on-linux-and-macos) for the Release Build, but where they tell you to run:
 
 ```sh
-npm run test:node
-npm run test:hermes
-npm run test:web
-npm run test
+cmake -S hermes -B build_release -G Ninja -DCMAKE_BUILD_TYPE=Release
 ```
 
-And see the beginnings of some results from the existing scenarios.
+Add a new flag, and instead run:
+
+```sh
+cmake -S hermes -B build_release -G Ninja -DCMAKE_BUILD_TYPE=Release -DHERMES_BUILD_NODE_HERMES=ON
+```
+
+And in the `build_release/bin` folder, you'll find a `node-hermes` binary that should work with the benchmarking scripts and commands. You'll want to somehow get that binary into your path so that `node-hermes` points to the binary in your local machine. For me, I updated my PATH with:
+
+```sh
+# ~/.zshrc
+export PATH="$PATH:/Users/tylerwilliams/build_release/bin" # Replace with the path to your local build here
+```
+
+That should help most folks running on Mac OS. If this is too much of a pain, we will eventually have some containerized set up to smooth this over.
+
+## Setup and running tests
+
+```sh
+npm install # install dependencies
+npm run build # builds the JavaScript bundles to be tested. Bundles from ./scenarios -> build/(node | web)
+npm run test:node # just test node
+npm run test:hermes # just test hermes
+npm run test:web # just test web
+npm run test # test all three platforms
+```
+
+Then check `results` for some (right now just plaintext) output from the test runs.
+
+## Next steps, todos, and thoughts
+
+1. [] Need to add a way to parse different types of results and store them in a more consistent way
+1. [] Need to add a way to change MST versions
+1. [] Need to add helpful and welcoming instructions to add scenarios
+1. [] Need to add helpful and welcoming instructions on interpreting results.
