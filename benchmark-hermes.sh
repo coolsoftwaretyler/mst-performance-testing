@@ -21,6 +21,6 @@ scenarios_to_run=("${all_scenarios_in_directory[@]}")
 # Then run each of the scenarios locally from the ./src/node/scenarios directory,
 # For each one - listen to stdout and append it to ./results/run_id.csv. There should only be one line of output per scenario.
 for file in "${scenarios_to_run[@]}"; do
-    echo "$file"    
-    gtime node ./build/node/"$(basename "$file")"
+    echo "$file"
+    gtime /Users/tylerwilliams/build_release/bin/node-hermes ./build/node/"$(basename "$file")"
 done
