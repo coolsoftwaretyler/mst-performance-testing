@@ -6,7 +6,10 @@ const readdir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new" }); // Open the first tab
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  }); // Open the first tab
   const page = await browser.newPage();
 
   // Listen to console messages

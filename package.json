@@ -9,9 +9,9 @@
   },
   "scripts": {
     "build": "rm -rf ./build/node/* && webpack --config webpack.config.js",
-    "test:node": "rm -f ./results/node.txt && npm run build && ./benchmark-node.sh &> ./results/node.txt",
-    "test:hermes": "rm -f ./results/hermes.txt && npm run build && ./benchmark-hermes.sh &> ./results/hermes.txt",
-    "test:web": "rm -f ./results/web.txt && npm run build && node browser-tests.js &> ./results/web.txt",
+    "test:node": "npm run build && ./benchmark-node.sh",
+    "test:hermes": "npm run build && ./benchmark-hermes.sh",
+    "test:web": "npm run build && node browser-tests.js",
     "test": "npm run test:node && npm run test:hermes && npm run test:web"
   }
 }
