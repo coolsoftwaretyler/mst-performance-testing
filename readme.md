@@ -55,7 +55,15 @@ npm run test:web # just test web
 npm run test # test all three platforms
 ```
 
-Right now, these commands will spit out some data from `gtime` and the browser benchmarks. You can capture that data with `&> ./results/(hermes|node|web).txt`. Eventually we will include a better way to capture and analyze the results.
+Those commands will just send data to the console right now. If you want to record your run locally, you can instead run:
+
+```
+npm run record:local
+```
+
+And you'll get results in the `results/` directory, split up by Hermes, Node, and Web.
+
+Right now we don't have anything actually processing the output, but this is a place to record the runs, and we can write some utilities to process the results later.
 
 ## Running with Docker
 
@@ -65,6 +73,16 @@ Using the `Dockerfile` in this repo might help smooth over any environmental set
 2. Build the image: `docker build -t mst-performance-testing .`
 3. You can either run the tests from your command line with: `docker run -it --rm mst-performance-testing npm run test`
 4. Or start a Docker container, enter it, and run commands from within the Docker connection.
+
+As with the local runs, you can record your Docker results with:
+
+```
+npm run record:docker
+```
+
+And you'll get results in the `results/` directory, split up by Hermes, Node, and Web.
+
+Right now we don't have anything actually processing the output, but this is a place to record the runs, and we can write some utilities to process the results later.
 
 ## Understanding the results
 
