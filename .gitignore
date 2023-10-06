@@ -5,3 +5,4 @@ build/web/*.js
 build/web/*.txt
 build/hermes/*.js
 results/*.txt
+results/*.csv

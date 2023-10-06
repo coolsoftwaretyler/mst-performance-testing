@@ -27,6 +27,7 @@ fs.readFile("./results/node.txt", "utf8", (err, data) => {
     // Check if the line contains a file path
     if (line.endsWith(".bundle.js")) {
       currentScenario = line.match(/(\S+)\.bundle\.js/)[1];
+      currentScenario = currentScenario.replace("./build/node/", "");
     } else {
       // Check if the line contains resource usage information
       const resourceMatch = line.match(resourceRegex);

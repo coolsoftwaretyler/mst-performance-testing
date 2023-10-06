@@ -23,19 +23,23 @@ fs.readFile("./results/web.txt", "utf8", (err, data) => {
       const maxMemoryLine = lines[i + 2];
 
       // Extract scenario name
-      const scenario = scenarioLine.split(" ")[0];
+      let scenario = scenarioLine.split(" ")[0];
+      // Remove .web.bundle.js from the suffix of the scenario name
+      scenario = scenario.replace(".web.bundle.js", "");
 
       // Extract userTime and maxResident values
-      const userTime = parseFloat(
+      let userTime = parseFloat(
         executionLine.split("Execution Time: ")[1].replace("ms", "")
       );
+      // Make userTime in seconds, right now it's ms
+      userTime /= 1000;
       const maxResident = parseFloat(
         maxMemoryLine.split("Max Memory Usage: ")[1].split(" KB")[0]
       );
 
       // Push the extracted data into the result array
       resultArray.push({
-        scenario: `./build/node/${scenario}`,
+        scenario,
         time: userTime,
         memory: maxResident,
       });
