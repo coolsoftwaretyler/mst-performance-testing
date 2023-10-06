@@ -72,7 +72,7 @@ Right now we're just using `gtime` for Node and Hermes tests, and some `console.
 
 ## Next steps, todos, and thoughts
 
-1. [] Need to add a way to parse different types of results and store them in a consistent way
-1. [] Need to add a way to change MST versions
-1. [] Need to add helpful and welcoming instructions to add scenarios
-1. [] Need to add helpful and welcoming instructions on interpreting results.
+1. [ ] Need to add a way to parse different types of results and store them in a consistent way
+1. [ ] Need to add a way to change MST versions
+1. [ ] Need to add helpful and welcoming instructions to add scenarios
+1. [ ] Need to add helpful and welcoming instructions on interpreting results.
