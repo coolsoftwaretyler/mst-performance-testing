@@ -11,6 +11,7 @@ In order to run the tests here, you'll need:
 3. The [gnu-time command](https://www.gnu.org/software/time/), available in your path as `gtime` (this helps maintain compatibility across Mac OS and Linux)
 4. [git](https://git-scm.com/) for source code management.
 5. [bash](https://www.gnu.org/software/bash/) or any shell that can evaluate `.sh` files (used to run Hermes and Node benchmarks).
+6. (optional) If you don't want to set up your local environment, you can instead use [run with Docker](#running-with-docker) and use a pre-built environment. But you'll need to have [Docker](https://www.docker.com/) available on your machine.
 
 ### Building node-hermes
 
@@ -54,11 +55,24 @@ npm run test:web # just test web
 npm run test # test all three platforms
 ```
 
-Then check `results` for some (right now just plaintext) output from the test runs.
+Right now, these commands will spit out some data from `gtime` and the browser benchmarks. You can capture that data with `&> ./results/(hermes|node|web).txt`. Eventually we will include a better way to capture and analyze the results.
+
+## Running with Docker
+
+Using the `Dockerfile` in this repo might help smooth over any environmental set up. To do so:
+
+1. [Assuming you already have Docker on your machine]()
+2. Build the image: `docker build -t mst-performance-testing .`
+3. You can either run the tests from your command line with: `docker run -it --rm mst-performance-testing npm run test`
+4. Or start a Docker container, enter it, and run commands from within the Docker connection.
+
+## Understanding the results
+
+Right now we're just using `gtime` for Node and Hermes tests, and some `console.log` statements for the web browser tests. We will eventually write some utilities to parse the output into a more structured format for analysis.
 
 ## Next steps, todos, and thoughts
 
-1. [] Need to add a way to parse different types of results and store them in a more consistent way
+1. [] Need to add a way to parse different types of results and store them in a consistent way
 1. [] Need to add a way to change MST versions
 1. [] Need to add helpful and welcoming instructions to add scenarios
 1. [] Need to add helpful and welcoming instructions on interpreting results.
