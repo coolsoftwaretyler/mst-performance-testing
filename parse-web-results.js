@@ -36,8 +36,8 @@ fs.readFile("./results/web.txt", "utf8", (err, data) => {
       // Push the extracted data into the result array
       resultArray.push({
         scenario: `./build/node/${scenario}`,
-        userTime,
-        maxResident,
+        time: userTime,
+        memory: maxResident,
       });
     }
   }

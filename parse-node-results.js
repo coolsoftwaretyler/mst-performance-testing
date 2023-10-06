@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 // Read the file contents from ./results/hermes.txt
-fs.readFile("./results/hermes.txt", "utf8", (err, data) => {
+fs.readFile("./results/node.txt", "utf8", (err, data) => {
   if (err) {
     console.error("Error reading file:", err);
     return;
@@ -36,8 +36,8 @@ fs.readFile("./results/hermes.txt", "utf8", (err, data) => {
 
         result.push({
           scenario: currentScenario,
-          userTime: currentUserTime,
-          maxResident: currentMaxResident,
+          time: currentUserTime,
+          memory: currentMaxResident,
         });
       }
     }
