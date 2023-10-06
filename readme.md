@@ -7,11 +7,11 @@ This repo is intended to test the performance of [MobX-State-Tree](https://githu
 In order to run the tests here, you'll need:
 
 1. [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) in order to run node scripts and download dependencies with `npm`.
-2. `node-hermes`, which is [and unsupported tool provided by Hermes](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes). [See more about building your own version](#building-node-hermes)
-3. The [gnu-time command](https://www.gnu.org/software/time/), available in your path as `gtime` (this helps maintain compatibility across Mac OS and Linux)
+2. `node-hermes`, which is [an unsupported tool provided by Hermes](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes). [See more about building your own version](#building-node-hermes)
+3. The [GNU time command](https://www.gnu.org/software/time/), available in your path as `gtime` (this helps maintain compatibility across Mac OS and Linux)
 4. [git](https://git-scm.com/) for source code management.
 5. [bash](https://www.gnu.org/software/bash/) or any shell that can evaluate `.sh` files (used to run Hermes and Node benchmarks).
-6. (optional) If you don't want to set up your local environment, you can instead use [run with Docker](#running-with-docker) and use a pre-built environment. But you'll need to have [Docker](https://www.docker.com/) available on your machine.
+6. (optional) If you don't want to set up your local environment, you can instead [run with Docker](#running-with-docker) and use a pre-built environment. But you'll need to have [Docker](https://www.docker.com/) available on your machine.
 
 ### Building node-hermes
 
@@ -21,7 +21,7 @@ However, for the purpose of this testing library, we didn't want to require an e
 
 Since we run scenarios in node with `node /path/to/scenario.js`, it would be awesome if there was some way we could run a given scenario with `hermes`.
 
-Of course, you can [build Hermes from source](https://hermesengine.dev/docs/building-and-running#building-on-linux-and-macos), but the engine doesn't implement many features people are used to writing in Node.js, browsers, or React Native itself. Fortunately, Hermes has an (unsupported) tool, called [`node-hermes`](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes), which will in fact run a JavaScript bundle like `node-hermes /path/to/bundle.js`
+Of course, you can [build Hermes from source](https://hermesengine.dev/docs/building-and-running#building-on-linux-and-macos), but the engine doesn't implement some critical APIs for writing useful MST scenarios. Fortunately, Hermes has an (unsupported) tool, called [`node-hermes`](https://github.com/tmikov/hermes/tree/fb7a2486787a2659f194936573c9a2cd1370541b/tools/node-hermes), which will run a JavaScript bundle like `node-hermes /path/to/bundle.js`
 
 If you want to get a `node-hermes` binary on your machine, [follow the building instructions](https://hermesengine.dev/docs/building-and-running#building-on-linux-and-macos) for the Release Build, but where they tell you to run:
 
@@ -42,7 +42,7 @@ And in the `build_release/bin` folder, you'll find a `node-hermes` binary that s
 export PATH="$PATH:/Users/tylerwilliams/build_release/bin" # Replace with the path to your local build here
 ```
 
-That should help most folks running on Mac OS. If this is too much of a pain, we will eventually have some containerized set up to smooth this over.
+That should help most folks running on Mac OS. If this is too much of a pain, consider running with Docker.
 
 ## Setup and running tests
 
@@ -55,13 +55,13 @@ npm run test:web # just test web
 npm run test # test all three platforms
 ```
 
-Those commands will just send data to the console right now. If you want to record your run locally, you can instead run:
+Those commands will just send output to stdout right now. If you want to record your run locally, you can instead run:
 
 ```
 npm run record:local
 ```
 
-And you'll get results in the `results/` directory, split up by Hermes, Node, and Web.
+And you'll get results in the `results/` directory, grouped by Hermes, Node, and Web.
 
 Right now we don't have anything actually processing the output, but this is a place to record the runs, and we can write some utilities to process the results later.
 
@@ -69,7 +69,7 @@ Right now we don't have anything actually processing the output, but this is a p
 
 Using the `Dockerfile` in this repo might help smooth over any environmental set up. To do so:
 
-1. [Assuming you already have Docker on your machine]()
+1. Assuming you already have Docker on your machine:
 2. Build the image: `docker build -t mst-performance-testing .`
 3. You can either run the tests from your command line with: `docker run -it --rm mst-performance-testing npm run test`
 4. Or start a Docker container, enter it, and run commands from within the Docker connection.
@@ -80,7 +80,7 @@ As with the local runs, you can record your Docker results with:
 npm run record:docker
 ```
 
-And you'll get results in the `results/` directory, split up by Hermes, Node, and Web.
+And you'll get results in the `results/` directory, grouped by Hermes, Node, and Web.
 
 Right now we don't have anything actually processing the output, but this is a place to record the runs, and we can write some utilities to process the results later.
 
