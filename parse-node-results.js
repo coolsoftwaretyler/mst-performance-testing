@@ -45,4 +45,24 @@ fs.readFile("./results/node.txt", "utf8", (err, data) => {
   }
 
   console.log(result);
+
+  const timestamp = new Date().toISOString().replace(/:/g, "-");
+
+  // Write the array as a csv to ./results/web-timetamp.csv, where the headers are scenario, time_ms, memory_kb
+  result.unshift({
+    scenario: "scenario",
+    time: "time_ms",
+    memory: "memory_kb",
+  });
+  const csv = result
+    .map((result) => `${result.scenario},${result.time},${result.memory}`)
+    .join("\n");
+
+  fs.writeFile(`./results/node-${timestamp}.csv`, csv, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(`Successfully wrote to ./results/node-${timestamp}.csv`);
+  });
 });

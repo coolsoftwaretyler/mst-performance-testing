@@ -86,11 +86,20 @@ Right now we don't have anything actually processing the output, but this is a p
 
 ## Understanding the results
 
-Right now we're just using `gtime` for Node and Hermes tests, and some `console.log` statements for the web browser tests. We will eventually write some utilities to parse the output into a more structured format for analysis.
+Once you've run tests for a platform, you can then run:
+
+```sh
+npm run results:hermes # for Hermes
+npm run results:node # for Node
+npm run results: web # for web
+```
+
+And you'll get a file in `./results/<platform>-<timestamp>.csv` with columns for the scenario, time measured in milliseconds, and max memory used in kilobytes. We use the name of the file to describe the scenario at the moment, but eventually we should have a better place for comments.
+
+These commands assume the text files from the measurement runs exist. If they do, you can generate these CSVs and use them for more detailed analysis.
 
 ## Next steps, todos, and thoughts
 
-1. [ ] Need to add a way to parse different types of results and store them in a consistent way
 1. [ ] Need to add a way to change MST versions
 1. [ ] Need to add helpful and welcoming instructions to add scenarios
 1. [ ] Need to add helpful and welcoming instructions on interpreting results.
