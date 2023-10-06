@@ -12,6 +12,8 @@
     "test:node": "npm run build && ./benchmark-node.sh",
     "test:hermes": "npm run build && ./benchmark-hermes.sh",
     "test:web": "npm run build && node browser-tests.js",
-    "test": "npm run test:node && npm run test:hermes && npm run test:web"
+    "test": "npm run test:node && npm run test:hermes && npm run test:web",
+    "record:local": "rm -rf ./results/hermes.txt ./results/node.txt ./results/web.txt && npm run test:node &> ./results/node.txt && npm run test:hermes &> ./results/hermes.txt && npm run test:web &> ./results/web.txt",
+    "record:docker": "rm -rf ./results/hermes.txt ./results/node.txt ./results/web.txt && docker run -it --rm mst-performance-testing npm run test:hermes &> ./results/hermes.txt && docker run -it --rm mst-performance-testing npm run test:node &> ./results/node.txt && docker run -it --rm mst-performance-testing npm run test:web &> ./results/web.txt"
   }
 }
