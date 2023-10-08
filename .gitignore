@@ -1,4 +1,6 @@
 node_modules/
+build/*.js
+build/*.txt
 build/node/*.js
 build/node/*.txt
 build/web/*.js
@@ -6,3 +8,5 @@ build/web/*.txt
 build/hermes/*.js
 results/*.txt
 results/*.csv
+puppeteer/index.bundle.js
+puppeteer/index.bundle.js.LICENSE.txt
