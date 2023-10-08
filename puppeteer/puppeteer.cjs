@@ -22,7 +22,7 @@ const fs = require("fs").promises;
     "utf-8"
   );
   const indexBundleScript = await fs.readFile(
-    "./puppeteer/index.bundle.js",
+    "../build/index.web.bundle.js",
     "utf-8"
   );
 

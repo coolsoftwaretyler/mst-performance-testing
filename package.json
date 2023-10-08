@@ -9,9 +9,9 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build:web": "webpack --config webpack.config.cjs",
-    "test:node": "node ./runners/node-runner.js | tee ./results/node-results.csv",
+    "build": "rm -rf build/* && webpack --config webpack.config.cjs",
+    "test:node": "npm run build && node ./build/index.node.bundle.js | tee ./results/node-results.csv",
     "test:hermes": "echo 'Hermes not yet supported'",
-    "test:web": "npm run build:web && node ./puppeteer/puppeteer.cjs | tee ./results/web-results.csv"
+    "test:web": "npm run build && node ./puppeteer/puppeteer.cjs | tee ./results/web-results.csv"
   }
 }
