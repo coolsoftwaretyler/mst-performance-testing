@@ -8,6 +8,7 @@ In order to run the tests here, you'll need:
 
 1. [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) in order to run node scripts and download dependencies with `npm`.
 2. [git](https://git-scm.com/) for source code management.
+3. [tee](https://www.gnu.org/software/coreutils/manual/html_node/tee-invocation.html) (most Mac OS and Linux machines will have this built in).
 
 ## Setup and running tests
 
@@ -18,17 +19,7 @@ npm run test:web # just test web
 npm run test:hermes # just test Hermes (not yet supported)
 ```
 
-Each one of these commands will write its output to `results/<platform>-results.csv`. It will include some of the debug information, so you'll want to look for the headers:
-
-```csv
-scenario,memory,ops/sec,+/-,runs
-```
-
-And then delete the lines above it. We will probably split up the logic to write these CSV files later. Right now we are just piping from stdout on the command.
-
-## Understanding the results
-
-Each scenario has a title, which should provide a short description of what it demonstrates. We measure the memory usage in KB and record the largest observed memory usage. Then we use [Benchmark.js](https://benchmarkjs.com/) to get the operations per second of that scenario, along with the margin of error and number of runs used to reach statistical significance.
+Each one of these commands will write its output to `results/<platform>-results.csv`. Each scenario has a title, which should provide a short description of what it demonstrates. Then we use [Benchmark.js](https://benchmarkjs.com/) to get the operations per second of that scenario, along with the margin of error and number of runs used to reach statistical significance.
 
 ## How to add scenarios
 
@@ -52,5 +43,7 @@ export const scenario1 = {
   },
 };
 ```
+
+These exported functions get imported in `./runner.js`, and then bundled for node and web separately. We run the node bundle with `node`, and we have a [Puppeteer](https://pptr.dev/) script that loads, executes, and reports the output of the web bundle. That's at `puppeteer.cjs`.
 
 Feel free to write helper functions and different types of set up in the `scenarios` folder. Please avoid using APIs specific to web browsers, node, or React Native. We aren't yet set up to handle those differences.
