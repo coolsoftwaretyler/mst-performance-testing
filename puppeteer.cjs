@@ -5,6 +5,7 @@ const fs = require("fs").promises;
   // Launch a headless browser
   const browser = await puppeteer.launch({
     headless: "new",
+    args: ["--enable-precise-memory-info"],
   });
 
   // Open a new page
