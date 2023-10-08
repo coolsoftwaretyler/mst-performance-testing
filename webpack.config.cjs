@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = [
   {
-    entry: "./runners/web-runner.js",
+    entry: "./runner.js",
     output: {
       filename: "index.web.bundle.js",
       path: path.resolve(__dirname, "build"),
@@ -11,7 +11,7 @@ module.exports = [
     mode: "production",
   },
   {
-    entry: "./runners/node-runner.js",
+    entry: "./runner.js",
     output: {
       filename: "index.node.bundle.js",
       path: path.resolve(__dirname, "build"),

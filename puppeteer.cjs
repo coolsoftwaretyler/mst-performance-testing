@@ -19,7 +19,7 @@ const fs = require("fs").promises;
   const lodashScript = await fs.readFile("./vendor/lodash.js", "utf-8");
   const benchmarkScript = await fs.readFile("./vendor/benchmark.js", "utf-8");
   const indexBundleScript = await fs.readFile(
-    "../build/index.web.bundle.js",
+    "./build/index.web.bundle.js",
     "utf-8"
   );
 
