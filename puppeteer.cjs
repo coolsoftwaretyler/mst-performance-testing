@@ -16,11 +16,8 @@ const fs = require("fs").promises;
   });
 
   // Read the contents of the local JavaScript files
-  const lodashScript = await fs.readFile("./puppeteer/lodash.js", "utf-8");
-  const benchmarkScript = await fs.readFile(
-    "./puppeteer/benchmark.js",
-    "utf-8"
-  );
+  const lodashScript = await fs.readFile("./vendor/lodash.js", "utf-8");
+  const benchmarkScript = await fs.readFile("./vendor/benchmark.js", "utf-8");
   const indexBundleScript = await fs.readFile(
     "../build/index.web.bundle.js",
     "utf-8"
@@ -31,7 +28,7 @@ const fs = require("fs").promises;
     <!DOCTYPE html>
     <html>
       <head>
-        <title>JavaScript Libraries Example</title>
+        <title>Performance Suite</title>
       </head>
       <body>
         <!-- Inline Lodash library -->
