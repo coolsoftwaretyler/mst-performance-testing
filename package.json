@@ -12,6 +12,6 @@
     "build:web": "webpack --config webpack.config.cjs",
     "test:node": "node ./runners/node-runner.js | tee ./results/node-results.csv",
     "test:hermes": "echo 'Hermes not yet supported'",
-    "test:web": "npm build:web && node ./puppeteer/puppeteer.cjs"
+    "test:web": "npm run build:web && node ./puppeteer/puppeteer.cjs | tee ./results/web-results.csv"
   }
 }
