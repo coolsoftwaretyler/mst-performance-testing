@@ -2,6 +2,7 @@ import {
   ModelWithPrimitivesAndActions,
   createNModels,
 } from "./model-creation.js";
+import { types } from "mobx-state-tree";
 
 /**
  * Below, write scenarios. Each scenario should be exported.
@@ -171,5 +172,59 @@ export const scenario12 = {
       boolean: true,
       date: new Date(),
     }).setDate(new Date());
+  },
+};
+
+// Create a types.string
+export const scenario13 = {
+  title: "Create a types.string",
+  longDescription: "Create a types.string.",
+  run: () => {
+    types.string.create("string");
+  },
+};
+
+// Create a types.number
+export const scenario14 = {
+  title: "Create a types.number",
+  longDescription: "Create a types.number.",
+  run: () => {
+    types.number.create(1);
+  },
+};
+
+// Create a types.integer
+export const scenario15 = {
+  title: "Create a types.integer",
+  longDescription: "Create a types.integer.",
+  run: () => {
+    types.integer.create(1);
+  },
+};
+
+// Create a types.float
+export const scenario16 = {
+  title: "Create a types.float",
+  longDescription: "Create a types.float.",
+  run: () => {
+    types.float.create(1.1);
+  },
+};
+
+// Create a types.boolean
+export const scenario17 = {
+  title: "Create a types.boolean",
+  longDescription: "Create a types.boolean.",
+  run: () => {
+    types.boolean.create(true);
+  },
+};
+
+// Create a types.Date
+export const scenario18 = {
+  title: "Create a types.Date",
+  longDescription: "Create a types.Date.",
+  run: () => {
+    types.Date.create(new Date());
   },
 };
