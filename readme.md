@@ -1,6 +1,6 @@
 # MobX-State-Tree Performance Testing
 
-This repo is intended to test the performance of [MobX-State-Tree](https://github.com/mobxjs/mobx-state-tree).
+This repo is intended to test the performance of [MobX-State-Tree](https://github.com/mobxjs/mobx-state-tree). [Read a longer form blog post about the intention behind this repository](https://coolsoftware.dev/blog/benchmarking-mobx-state-tree/)
 
 ## Dependencies
 
@@ -58,5 +58,3 @@ export const scenario1 = {
 These exported functions get imported in `./runner.js`, and then bundled for node and web separately. We run the node bundle with `node`, and we have a [Puppeteer](https://pptr.dev/) script that loads, executes, and reports the output of the web bundle. That's at `puppeteer.cjs`.
 
 Feel free to write helper functions and different types of set up in the `scenarios` folder. Please avoid using APIs specific to web browsers, node, or React Native. We aren't yet set up to handle those differences.
-
-[Read a longer form blog post about the intention behind this repository](https://coolsoftware.dev/blog/benchmarking-mobx-state-tree/)
