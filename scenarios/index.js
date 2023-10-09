@@ -228,3 +228,111 @@ export const scenario18 = {
     types.Date.create(new Date());
   },
 };
+
+// Create a types.array(types.string)
+export const scenario19 = {
+  title: "Create a types.array(types.string)",
+  longDescription: "Create a types.array(types.string).",
+  run: () => {
+    types.array(types.string).create(["string"]);
+  },
+};
+
+// Create a types.array(types.number)
+export const scenario20 = {
+  title: "Create a types.array(types.number)",
+  longDescription: "Create a types.array(types.number).",
+  run: () => {
+    types.array(types.number).create([1]);
+  },
+};
+
+// Create a types.array(types.integer)
+export const scenario21 = {
+  title: "Create a types.array(types.integer)",
+  longDescription: "Create a types.array(types.integer).",
+  run: () => {
+    types.array(types.integer).create([1]);
+  },
+};
+
+// Create a types.array(types.float)
+export const scenario22 = {
+  title: "Create a types.array(types.float)",
+  longDescription: "Create a types.array(types.float).",
+  run: () => {
+    types.array(types.float).create([1.1]);
+  },
+};
+
+// Create a types.array(types.boolean)
+export const scenario23 = {
+  title: "Create a types.array(types.boolean)",
+  longDescription: "Create a types.array(types.boolean).",
+  run: () => {
+    types.array(types.boolean).create([true]);
+  },
+};
+
+// Create a types.array(types.Date)
+export const scenario24 = {
+  title: "Create a types.array(types.Date)",
+  longDescription: "Create a types.array(types.Date).",
+  run: () => {
+    types.array(types.Date).create([new Date()]);
+  },
+};
+
+// Create a types.map(types.string)
+export const scenario25 = {
+  title: "Create a types.map(types.string)",
+  longDescription: "Create a types.map(types.string).",
+  run: () => {
+    types.map(types.string).create({ string: "string" });
+  },
+};
+
+// Create a types.map(types.number)
+export const scenario26 = {
+  title: "Create a types.map(types.number)",
+  longDescription: "Create a types.map(types.number).",
+  run: () => {
+    types.map(types.number).create({ number: 1 });
+  },
+};
+
+// Create a types.map(types.integer)
+export const scenario27 = {
+  title: "Create a types.map(types.integer)",
+  longDescription: "Create a types.map(types.integer).",
+  run: () => {
+    types.map(types.integer).create({ integer: 1 });
+  },
+};
+
+// Create a types.map(types.float)
+export const scenario28 = {
+  title: "Create a types.map(types.float)",
+  longDescription: "Create a types.map(types.float).",
+  run: () => {
+    types.map(types.float).create({ float: 1.1 });
+  },
+};
+
+// Create a types.map(types.boolean)
+export const scenario29 = {
+  title: "Create a types.map(types.boolean)",
+  longDescription: "Create a types.map(types.boolean).",
+  run: () => {
+    types.map(types.boolean).create({ boolean: true });
+  },
+};
+
+// Create a types.map(types.Date)
+export const scenario30 = {
+  title: "Create a types.map(types.Date)",
+  longDescription: "Create a types.map(types.Date).",
+  run: () => {
+    types.map(types.Date).create({ date: new Date() });
+  },
+};
