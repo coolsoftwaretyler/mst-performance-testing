@@ -10,8 +10,8 @@
   },
   "scripts": {
     "build": "rm -rf build/* && webpack --config webpack.config.cjs",
-    "test:node": "npm run build && echo '\nRunning the node tests, this may take a while...\n' && rm -rf ./results/node-results.csv && node ./build/index.node.bundle.js | tee ./results/node-results.csv",
+    "test:node": "./test-node.sh",
     "test:hermes": "echo 'Hermes not yet supported'",
-    "test:web": "npm run build && echo '\nRunning the web tests, this may take a while...\n' && rm -rf ./results/web-results.csv && node ./puppeteer.cjs | tee ./results/web-results.csv"
+    "test:web": "./test-web.sh"
   }
 }
