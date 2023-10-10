@@ -75,6 +75,13 @@ for (const scenario in Scenarios) {
   const { title, run } = Scenarios[scenario];
   suite.add(title, () => {
     const startMemory = getStartMemory();
+    const data = [];
+
+    // Create a busy-wait loop to introduce a delay
+    for (let i = 0; i < 10000000; i++) {
+      // This loop will take some time to completeo
+      data.push({ value: i });
+    }
     run();
     const endMemory = getEndMemory();
     const memoryUsed = endMemory - startMemory;
