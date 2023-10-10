@@ -11,6 +11,7 @@
   "scripts": {
     "build": "rm -rf build/* && webpack --config webpack.config.cjs",
     "test:node": "./test-node.sh",
+    "test:bun": "./test-bun.sh",
     "test:hermes": "echo 'Hermes not yet supported'",
     "test:web": "./test-web.sh"
   }
