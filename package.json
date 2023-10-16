@@ -6,7 +6,8 @@
     "mobx-state-tree": "^5.2.0",
     "puppeteer": "^21.3.8",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "zod": "^3.22.4"
   },
   "scripts": {
     "build": "rm -rf build/* && webpack --config webpack.config.cjs",
