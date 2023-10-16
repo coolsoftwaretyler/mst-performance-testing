@@ -10,3 +10,4 @@ results/*.txt
 results/*.csv
 puppeteer/index.bundle.js
 puppeteer/index.bundle.js.LICENSE.txt
+scratch.md
