@@ -33,11 +33,11 @@ export const getComputedValueTwice = () => {
   return numberOfChildrenAgain;
 };
 
-export const getComputedValueWithParameter = () => {
+export const getViewWithParameter = () => {
   return userStore.numberOfPeopleOlderThan(50);
 };
 
-export const getComputedValueWithParameterTwice = () => {
+export const getViewWithParameterTwice = () => {
   const numberOfPeopleOlderThan = userStore.numberOfPeopleOlderThan(50);
   const numberOfPeopleOlderThanAgain = userStore.numberOfPeopleOlderThan(50);
   return numberOfPeopleOlderThanAgain;
