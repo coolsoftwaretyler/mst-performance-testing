@@ -12,6 +12,12 @@ import {
   zodTypeCheckFailure,
 } from "./zod-comparison.js";
 import { declareReferenceAndRetrieveIt } from "./references.js";
+import {
+  getComputedValueOnce,
+  getComputedValueTwice,
+  getViewWithParameter,
+  getViewWithParameterTwice,
+} from "./derived-values.js";
 /**
  * Below, write scenarios. Each scenario should be exported.
  * It should be an object with a title, descriptoin, and a function.
@@ -736,5 +742,33 @@ export const scenario49 = {
       path: "",
       args: [new Date()],
     });
+  },
+};
+
+export const scenario50 = {
+  title: "Get a computed value once",
+  run: () => {
+    getComputedValueOnce();
+  },
+};
+
+export const scenario51 = {
+  title: "Get a computed value twice (should be cached)",
+  run: () => {
+    getComputedValueTwice();
+  },
+};
+
+export const scenario52 = {
+  title: "Get a view with a parameter once",
+  run: () => {
+    getViewWithParameter();
+  },
+};
+
+export const scenario53 = {
+  title: "Get a view with a parameter twice (not cached)",
+  run: () => {
+    getViewWithParameterTwice();
   },
 };
