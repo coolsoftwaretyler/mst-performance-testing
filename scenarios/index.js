@@ -2,7 +2,7 @@ import {
   ModelWithPrimitivesAndActions,
   createNModels,
 } from "./model-creation.js";
-import { types } from "mobx-state-tree";
+import { addMiddleware, applyAction, types } from "mobx-state-tree";
 import {
   mstTypeCheckModelSuccess,
   mstTypeCheckModelFailure,
@@ -11,7 +11,7 @@ import {
   zodTypeCheckSuccess,
   zodTypeCheckFailure,
 } from "./zod-comparison.js";
-
+import { declareReferenceAndRetrieveIt } from "./references.js";
 /**
  * Below, write scenarios. Each scenario should be exported.
  * It should be an object with a title, descriptoin, and a function.
@@ -536,5 +536,205 @@ export const scenario39 = {
       boolean: true,
       date: new Date(),
     }).getString();
+  },
+};
+
+export const scenario40 = {
+  title: "Declare a model with a reference and retrieve a value from it",
+  run: () => {
+    declareReferenceAndRetrieveIt();
+  },
+};
+
+export const scenario41 = {
+  title: "Add onAction to a model",
+  run: () => {
+    const Todo = types.model({
+      task: types.string,
+    });
+
+    const TodoStore = types
+      .model({
+        todos: types.array(Todo),
+      })
+      .actions((self) => ({
+        add(todo) {
+          self.todos.push(todo);
+        },
+      }));
+
+    const s = TodoStore.create({ todos: [] });
+
+    let disposer = onAction(s, (call) => {
+      console.log(call);
+    });
+
+    return disposer;
+  },
+};
+
+export const scenario42 = {
+  title: "Add middleware to an action and include hooks (default)",
+  run: () => {
+    const Todo = types.model({
+      task: types.string,
+    });
+
+    const TodoStore = types
+      .model({
+        todos: types.array(Todo),
+      })
+      .actions((self) => ({
+        add(todo) {
+          self.todos.push(todo);
+        },
+      }));
+
+    const s = TodoStore.create({ todos: [] });
+
+    addMiddleware(s, () => {});
+  },
+};
+
+export const scenario43 = {
+  title: "Add middleware to an action and do not include hooks",
+  run: () => {
+    const Todo = types.model({
+      task: types.string,
+    });
+
+    const TodoStore = types
+      .model({
+        todos: types.array(Todo),
+      })
+      .actions((self) => ({
+        add(todo) {
+          self.todos.push(todo);
+        },
+      }));
+
+    const s = TodoStore.create({ todos: [] });
+
+    addMiddleware(s, () => {}, false);
+  },
+};
+
+export const scenario44 = {
+  title: "Create 1 model and set a string value using applyAction",
+  run: () => {
+    ModelWithPrimitivesAndActions.create({
+      string: "string",
+      number: 1,
+      integer: 1,
+      float: 1.1,
+      boolean: true,
+      date: new Date(),
+    });
+
+    applyAction(ModelWithPrimitivesAndActions, {
+      name: "setString",
+      path: "",
+      args: ["new string"],
+    });
+  },
+};
+
+export const scenario45 = {
+  title: "Create 1 model and set a number value using applyAction",
+  run: () => {
+    ModelWithPrimitivesAndActions.create({
+      string: "string",
+      number: 1,
+      integer: 1,
+      float: 1.1,
+      boolean: true,
+      date: new Date(),
+    });
+
+    applyAction(ModelWithPrimitivesAndActions, {
+      name: "setNumber",
+      path: "",
+      args: [2],
+    });
+  },
+};
+
+export const scenario46 = {
+  title: "Create 1 model and set an integer value using applyAction",
+  run: () => {
+    ModelWithPrimitivesAndActions.create({
+      string: "string",
+      number: 1,
+      integer: 1,
+      float: 1.1,
+      boolean: true,
+      date: new Date(),
+    });
+
+    applyAction(ModelWithPrimitivesAndActions, {
+      name: "setInteger",
+      path: "",
+      args: [2],
+    });
+  },
+};
+
+export const scenario47 = {
+  title: "Create 1 model and set a float value using applyAction",
+  run: () => {
+    ModelWithPrimitivesAndActions.create({
+      string: "string",
+      number: 1,
+      integer: 1,
+      float: 1.1,
+      boolean: true,
+      date: new Date(),
+    });
+
+    applyAction(ModelWithPrimitivesAndActions, {
+      name: "setFloat",
+      path: "",
+      args: [2.2],
+    });
+  },
+};
+
+export const scenario48 = {
+  title: "Create 1 model and set a boolean value using applyAction",
+  run: () => {
+    ModelWithPrimitivesAndActions.create({
+      string: "string",
+      number: 1,
+      integer: 1,
+      float: 1.1,
+      boolean: true,
+      date: new Date(),
+    });
+
+    applyAction(ModelWithPrimitivesAndActions, {
+      name: "setBoolean",
+      path: "",
+      args: [false],
+    });
+  },
+};
+
+export const scenario49 = {
+  title: "Create 1 model and set a date value using applyAction",
+  run: () => {
+    ModelWithPrimitivesAndActions.create({
+      string: "string",
+      number: 1,
+      integer: 1,
+      float: 1.1,
+      boolean: true,
+      date: new Date(),
+    });
+
+    applyAction(ModelWithPrimitivesAndActions, {
+      name: "setDate",
+      path: "",
+      args: [new Date()],
+    });
   },
 };
