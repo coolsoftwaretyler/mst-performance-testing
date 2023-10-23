@@ -19,9 +19,12 @@ const UserStore = types
     },
   }));
 
-const userStore = UserStore.create();
-
-userStore.users.push(User.create({ id: "1", name: "John", age: 42 }));
+const userStore = UserStore.create({
+  users: [
+    { id: "1", name: "John", age: 42 },
+    { id: "2", name: "Jane", age: 47 },
+  ],
+});
 
 export const getComputedValueOnce = () => {
   return userStore.numberOfChildren;
