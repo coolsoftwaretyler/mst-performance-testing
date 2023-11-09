@@ -18,6 +18,7 @@ import {
   getViewWithParameter,
   getViewWithParameterTwice,
 } from "./derived-values.js";
+import { addNObjectsToArray } from "./array-operations.js";
 /**
  * Below, write scenarios. Each scenario should be exported.
  * It should be an object with a title, descriptoin, and a function.
@@ -770,5 +771,51 @@ export const scenario53 = {
   title: "Get a view with a parameter twice (not cached)",
   run: () => {
     getViewWithParameterTwice();
+  },
+};
+
+/**
+ * Different permutations of a requested benchmark from
+ * https://github.com/coolsoftwaretyler/mst-performance-testing/issues/26
+ */
+export const scenario54 = {
+  title: "Add 1 object to an array",
+  run: () => {
+    addNObjectsToArray(1);
+  },
+};
+
+export const scenario55 = {
+  title: "Add 10 objects to an array",
+  run: () => {
+    addNObjectsToArray(10);
+  },
+};
+
+export const scenario56 = {
+  title: "Add 100 objects to an array",
+  run: () => {
+    addNObjectsToArray(100);
+  },
+};
+
+export const scenario57 = {
+  title: "Add 1,000 objects to an array",
+  run: () => {
+    addNObjectsToArray(1000);
+  },
+};
+
+export const scenario58 = {
+  title: "Add 10,000 objects to an array",
+  run: () => {
+    addNObjectsToArray(10000);
+  },
+};
+
+export const scenario59 = {
+  title: "Add 100,000 objects to an array",
+  run: () => {
+    addNObjectsToArray(100000);
   },
 };
