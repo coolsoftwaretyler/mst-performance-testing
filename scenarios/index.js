@@ -16,7 +16,15 @@ import {
   zodTypeCheckSuccess,
   zodTypeCheckFailure,
 } from "./zod-comparison.js";
-import { declareReferenceAndRetrieveIt } from "./references.js";
+import {
+  declareReferenceAndRetrieveIt,
+  refineAReferenceAndSucceed,
+  refineAReferenceAndFail,
+  checkIfReferenceIsValidAndFail,
+  checkIfReferenceIsValidAndSucceed,
+  tryReferenceAndFail,
+  tryReferenceAndSucceed,
+} from "./references.js";
 import {
   getComputedValueOnce,
   getComputedValueTwice,
@@ -832,37 +840,79 @@ import {
 //   },
 // };
 
-export const scenario60 = {
-  title: "Get a snapshot of a model",
+// export const scenario60 = {
+//   title: "Get a snapshot of a model",
+//   run: () => {
+//     takeSingleSnapshot();
+//   },
+// };
+
+// export const scenario61 = {
+//   title: "Define and create a model with an onSnapshot listener",
+//   run: () => {
+//     createModelWithSnapshotListener();
+//   },
+// };
+
+// export const scenario62 = {
+//   title: "Execute a simple onSnapshot listener from an action",
+//   run: () => {
+//     executeSimpleSnapshotListenerFromAction();
+//   },
+// };
+
+// export const scenario63 = {
+//   title: "Apply a snapshot to a model",
+//   run: () => {
+//     applySnapshotToModel();
+//   },
+// };
+
+// export const scenario64 = {
+//   title: "Apply a snapshot to a model with a listener",
+//   run: () => {
+//     applySnapshotToModelWithListener();
+//   },
+// };
+
+export const scenario65 = {
+  title: "Refine a reference and succeed",
   run: () => {
-    takeSingleSnapshot();
+    refineAReferenceAndSucceed();
   },
 };
 
-export const scenario61 = {
-  title: "Define and create a model with an onSnapshot listener",
+export const scenario66 = {
+  title: "Refine a reference and fail",
   run: () => {
-    createModelWithSnapshotListener();
+    refineAReferenceAndFail();
   },
 };
 
-export const scenario62 = {
-  title: "Execute a simple onSnapshot listener from an action",
+export const scenario67 = {
+  title: "Check if reference is valid and fail",
   run: () => {
-    executeSimpleSnapshotListenerFromAction();
+    checkIfReferenceIsValidAndFail();
   },
 };
 
-export const scenario63 = {
-  title: "Apply a snapshot to a model",
+export const scenario68 = {
+  title: "Check if reference is valid and succeed",
   run: () => {
-    applySnapshotToModel();
+    checkIfReferenceIsValidAndSucceed();
   },
 };
 
-export const scenario64 = {
-  title: "Apply a snapshot to a model with a listener",
+export const scenario69 = {
+  title: "Try reference and fail",
   run: () => {
-    applySnapshotToModelWithListener();
+    tryReferenceAndFail();
+  },
+};
+
+export const scenario70 = {
+  title: "Try reference and succeed",
+  run: () => {
+    tryReferenceAndSucceed();
   },
 };
