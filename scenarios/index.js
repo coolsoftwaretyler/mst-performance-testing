@@ -39,6 +39,10 @@ import {
   applySnapshotToModel,
   applySnapshotToModelWithListener,
 } from "./snapshots.js";
+import {
+  attachPatchListenerToModel,
+  executeSimplePatchFromAction,
+} from "./patches.js";
 /**
  * Below, write scenarios. Each scenario should be exported.
  * It should be an object with a title, descriptoin, and a function.
@@ -875,44 +879,58 @@ import {
 //   },
 // };
 
-export const scenario65 = {
-  title: "Refine a reference and succeed",
+// export const scenario65 = {
+//   title: "Refine a reference and succeed",
+//   run: () => {
+//     refineAReferenceAndSucceed();
+//   },
+// };
+
+// export const scenario66 = {
+//   title: "Refine a reference and fail",
+//   run: () => {
+//     refineAReferenceAndFail();
+//   },
+// };
+
+// export const scenario67 = {
+//   title: "Check if reference is valid and fail",
+//   run: () => {
+//     checkIfReferenceIsValidAndFail();
+//   },
+// };
+
+// export const scenario68 = {
+//   title: "Check if reference is valid and succeed",
+//   run: () => {
+//     checkIfReferenceIsValidAndSucceed();
+//   },
+// };
+
+// export const scenario69 = {
+//   title: "Try reference and fail",
+//   run: () => {
+//     tryReferenceAndFail();
+//   },
+// };
+
+// export const scenario70 = {
+//   title: "Try reference and succeed",
+//   run: () => {
+//     tryReferenceAndSucceed();
+//   },
+// };
+
+export const scenario71 = {
+  title: "Attach a patch listener to a model",
   run: () => {
-    refineAReferenceAndSucceed();
+    attachPatchListenerToModel();
   },
 };
 
-export const scenario66 = {
-  title: "Refine a reference and fail",
+export const scenario72 = {
+  title: "Execute a simple patch from an action",
   run: () => {
-    refineAReferenceAndFail();
-  },
-};
-
-export const scenario67 = {
-  title: "Check if reference is valid and fail",
-  run: () => {
-    checkIfReferenceIsValidAndFail();
-  },
-};
-
-export const scenario68 = {
-  title: "Check if reference is valid and succeed",
-  run: () => {
-    checkIfReferenceIsValidAndSucceed();
-  },
-};
-
-export const scenario69 = {
-  title: "Try reference and fail",
-  run: () => {
-    tryReferenceAndFail();
-  },
-};
-
-export const scenario70 = {
-  title: "Try reference and succeed",
-  run: () => {
-    tryReferenceAndSucceed();
+    executeSimplePatchFromAction();
   },
 };
