@@ -2,7 +2,12 @@ import {
   ModelWithPrimitivesAndActions,
   createNModels,
 } from "./model-creation.js";
-import { addMiddleware, applyAction, types } from "mobx-state-tree";
+import {
+  addMiddleware,
+  applyAction,
+  getSnapshot,
+  types,
+} from "mobx-state-tree";
 import {
   mstTypeCheckModelSuccess,
   mstTypeCheckModelFailure,
@@ -11,7 +16,15 @@ import {
   zodTypeCheckSuccess,
   zodTypeCheckFailure,
 } from "./zod-comparison.js";
-import { declareReferenceAndRetrieveIt } from "./references.js";
+import {
+  declareReferenceAndRetrieveIt,
+  refineAReferenceAndSucceed,
+  refineAReferenceAndFail,
+  checkIfReferenceIsValidAndFail,
+  checkIfReferenceIsValidAndSucceed,
+  tryReferenceAndFail,
+  tryReferenceAndSucceed,
+} from "./references.js";
 import {
   getComputedValueOnce,
   getComputedValueTwice,
@@ -19,6 +32,17 @@ import {
   getViewWithParameterTwice,
 } from "./derived-values.js";
 import { addNObjectsToArray } from "./array-operations.js";
+import {
+  takeSingleSnapshot,
+  createModelWithSnapshotListener,
+  executeSimpleSnapshotListenerFromAction,
+  applySnapshotToModel,
+  applySnapshotToModelWithListener,
+} from "./snapshots.js";
+import {
+  attachPatchListenerToModel,
+  executeSimplePatchFromAction,
+} from "./patches.js";
 /**
  * Below, write scenarios. Each scenario should be exported.
  * It should be an object with a title, descriptoin, and a function.
@@ -817,5 +841,146 @@ export const scenario59 = {
   title: "Add 100,000 objects to an array",
   run: () => {
     addNObjectsToArray(100000);
+  },
+};
+
+export const scenario60 = {
+  title: "Get a snapshot of a model",
+  run: () => {
+    takeSingleSnapshot();
+  },
+};
+
+export const scenario61 = {
+  title: "Define and create a model with an onSnapshot listener",
+  run: () => {
+    createModelWithSnapshotListener();
+  },
+};
+
+export const scenario62 = {
+  title: "Execute a simple onSnapshot listener from an action",
+  run: () => {
+    executeSimpleSnapshotListenerFromAction();
+  },
+};
+
+export const scenario63 = {
+  title: "Apply a snapshot to a model",
+  run: () => {
+    applySnapshotToModel();
+  },
+};
+
+export const scenario64 = {
+  title: "Apply a snapshot to a model with a listener",
+  run: () => {
+    applySnapshotToModelWithListener();
+  },
+};
+
+export const scenario65 = {
+  title: "Refine a reference and succeed",
+  run: () => {
+    refineAReferenceAndSucceed();
+  },
+};
+
+export const scenario66 = {
+  title: "Refine a reference and fail",
+  run: () => {
+    refineAReferenceAndFail();
+  },
+};
+
+export const scenario67 = {
+  title: "Check if reference is valid and fail",
+  run: () => {
+    checkIfReferenceIsValidAndFail();
+  },
+};
+
+export const scenario68 = {
+  title: "Check if reference is valid and succeed",
+  run: () => {
+    checkIfReferenceIsValidAndSucceed();
+  },
+};
+
+export const scenario69 = {
+  title: "Try reference and fail",
+  run: () => {
+    tryReferenceAndFail();
+  },
+};
+
+export const scenario70 = {
+  title: "Try reference and succeed",
+  run: () => {
+    tryReferenceAndSucceed();
+  },
+};
+
+export const scenario71 = {
+  title: "Attach a patch listener to a model",
+  run: () => {
+    attachPatchListenerToModel();
+  },
+};
+
+export const scenario72 = {
+  title: "Execute a simple patch from an action",
+  run: () => {
+    executeSimplePatchFromAction();
+  },
+};
+
+export const scenario73 = {
+  title: "Attach middleware",
+  run: () => {
+    const Todo = types.model({
+      task: types.string,
+    });
+
+    const TodoStore = types
+      .model({
+        todos: types.array(Todo),
+      })
+      .actions((self) => ({
+        add(todo) {
+          self.todos.push(todo);
+        },
+      }));
+
+    const s = TodoStore.create({ todos: [] });
+
+    addMiddleware(s, () => {});
+  },
+};
+
+export const scenario74 = {
+  title: "Attach middleware and use it",
+  run: () => {
+    const Todo = types.model({
+      task: types.string,
+    });
+
+    const TodoStore = types
+      .model({
+        todos: types.array(Todo),
+      })
+      .actions((self) => ({
+        add(todo) {
+          self.todos.push(todo);
+        },
+      }));
+
+    const s = TodoStore.create({ todos: [] });
+
+    addMiddleware(s, (call, next) => {
+      next(call);
+    });
+
+    s.add({ task: "string" });
   },
 };
