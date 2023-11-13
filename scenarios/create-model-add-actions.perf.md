@@ -1,6 +1,13 @@
-import { types } from "mobx-state-tree";
+---
+title: "Create a model and add actions to it"
+---
 
-export const ModelWithPrimitivesAndActions = types
+```js
+import { types } from "mobx-state-tree";
+```
+
+```js
+const Model = types
   .model({
     string: types.string,
     number: types.number,
@@ -10,35 +17,23 @@ export const ModelWithPrimitivesAndActions = types
     date: types.Date,
   })
   .actions((self) => ({
-    setString(string) {
+    setString: (string) => {
       self.string = string;
     },
-    setNumber(number) {
+    setNumber: (number) => {
       self.number = number;
     },
-    setInteger(integer) {
+    setInteger: (integer) => {
       self.integer = integer;
     },
-    setFloat(float) {
+    setFloat: (float) => {
       self.float = float;
     },
-    setBoolean(boolean) {
+    setBoolean: (boolean) => {
       self.boolean = boolean;
     },
-    setDate(date) {
+    setDate: (date) => {
       self.date = date;
     },
   }));
-
-export const createNModels = (n) => {
-  for (let i = 0; i < n; i++) {
-    ModelWithPrimitivesAndActions.create({
-      string: "string",
-      number: 1,
-      integer: 1,
-      float: 1.1,
-      boolean: true,
-      date: new Date(),
-    });
-  }
-};
+```

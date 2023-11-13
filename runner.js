@@ -64,11 +64,11 @@ suite.on("complete", function () {
   });
 
   console.log(headers.join(","));
-  results.forEach((result) =>
+  results.forEach((result) => {
     console.log(
       `${result.scenario},${result.opsSec},${result.plusMinus},${result.runs},${result.maxMemory}`
-    )
-  );
+    );
+  });
 });
 
 for (const scenario in Scenarios) {
@@ -81,5 +81,9 @@ for (const scenario in Scenarios) {
     trackMaxMemory(title, memoryUsed);
   });
 }
+
+suite.on("cycle", function (event) {
+  console.log(String(event.target));
+});
 
 suite.run();
