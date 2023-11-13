@@ -2,9 +2,16 @@ const puppeteer = require("puppeteer");
 const fs = require("fs").promises;
 
 (async () => {
+  // Check if the bundle file path is provided as a command line argument
+  const bundleFilePath = process.argv[2];
+  if (!bundleFilePath) {
+    console.error("Error: Please provide a path to the web bundle file.");
+    process.exit(1);
+  }
+
   // Launch a headless browser
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: true,
     args: ["--enable-precise-memory-info"],
   });
 
@@ -19,10 +26,7 @@ const fs = require("fs").promises;
   // Read the contents of the local JavaScript files
   const lodashScript = await fs.readFile("./vendor/lodash.js", "utf-8");
   const benchmarkScript = await fs.readFile("./vendor/benchmark.js", "utf-8");
-  const indexBundleScript = await fs.readFile(
-    "./build/index.web.bundle.js",
-    "utf-8"
-  );
+  const indexBundleScript = await fs.readFile(bundleFilePath, "utf-8");
 
   // HTML content with inlined JavaScript
   const htmlContent = `
