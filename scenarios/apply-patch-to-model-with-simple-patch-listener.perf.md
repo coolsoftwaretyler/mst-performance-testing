@@ -1,6 +1,5 @@
 ---
-title: "Apply patch to model with simple patch listener
-"
+title: "Apply patch to model with simple patch listener"
 ---
 
 ```js
